@@ -1,14 +1,19 @@
+import os # operating system
+
 #读取档案
 #strip 除掉换行符(/n)
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f:
-		if '商品,价格' in line:
-			continue  # 跳到下一个回圈
-		name, price = line.strip().split(',')
-		products.append([name, price])
-
-print(products)
+if os.path.isfile('products.csv'): # 检查文件是否存在
+	print('找到文件!')
+	with open('products.csv', 'r', encoding='utf-8') as f:
+		for line in f:
+			if '商品,价格' in line:
+				continue  # 跳到下一个回圈
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)		
+else: 
+	print('找不到文件....')
 
 # 请使用者输入
 while True:
